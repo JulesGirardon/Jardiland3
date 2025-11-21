@@ -19,13 +19,14 @@ public abstract class IPlantation : ScriptableObject
     
     [Header("Score Value")]
     [Tooltip("Score awarded upon successful harvest")]
-    public int scoreValue = 10;
+    public int scoreValue = 10; // Valeur de score attribuée lors de la récolte réussie.
     
+    // Chaque plantation doit avoir une animation pour l'état vivant et une autre pour l'effet d'explosion.
     [Header("Animation")]
     [Tooltip("Animation clip for living state")]
-    public AnimationClip livingAnimationClip;
+    public AnimationClip livingAnimationClip; // Clip d'animation pour l'état vivant.
     [Tooltip("Animation clip for explosion effect")]
-    public AnimationClip explosionAnimationClip;
+    public AnimationClip explosionAnimationClip; // Clip d'animation pour l'effet d'explosion.
     
     [Header("Inventory Item")]
     [Tooltip("GameObject show in bottom of the screen")]

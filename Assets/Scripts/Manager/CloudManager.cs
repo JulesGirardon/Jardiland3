@@ -29,6 +29,11 @@ public class CloudManager : MonoBehaviour
         InvokeRepeating(nameof(SpawnCloud), 0f, spawnInterval);
     }
 
+    /// <summary>
+    /// Fonction qui gère la création et le mouvement des nuages.
+    /// Les nuages sont créés à des positions aléatoires dans une plage définie,
+    /// puis se déplacent horizontalement à une vitesse aléatoire avant d'être détruits
+    /// </summary>
     void SpawnCloud()
     {
         if (cloudPrefabs.Count == 0)

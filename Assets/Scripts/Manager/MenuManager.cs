@@ -73,6 +73,12 @@ public class MenuManager : MonoBehaviour
         Application.Quit();
     }
     
+    /// <summary>
+    /// Fonction qui fait l'inverse qu'au lancement.
+    /// Elle permet de faire tomber les objets avant de charger la scène de jeu.
+    /// J'ai fait ça car je trouvais ça stylé. 
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator RiseObjectsAndLoad()
     {
         SoundManager.Instance.PlayClickSound();
@@ -118,6 +124,9 @@ public class MenuManager : MonoBehaviour
         return $"{minutes:D2}:{seconds:D2}";
     }
     
+    /// <summary>
+    /// Passage en mode pause / dé-pause du menu des paramètres.
+    /// </summary>
     public void Settings()
     {
         _isSettingsOpen = !_isSettingsOpen;

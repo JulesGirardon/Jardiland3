@@ -65,7 +65,6 @@ public class WateringController : MonoBehaviour
         wateredGroundPlantationInstance.transform.SetParent(GameManager.Instance.parentGarden.transform);
         
         // On remplace la plantation au sol par une plantation au sol arrosée
-        GameManager.Instance.RemoveWateredGroundPlantation(_activeGroundPlantation);
         Destroy(_activeGroundPlantation);
         GameManager.Instance.SetActiveGroundPlantation(wateredGroundPlantationInstance);
 

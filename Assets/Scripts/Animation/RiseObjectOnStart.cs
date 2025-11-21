@@ -29,6 +29,11 @@ public class RiseObjectOnStart : MonoBehaviour
         StartCoroutine(HandleRiseAndDestroy());
     }
 
+    /// <summary>
+    /// Fonction qui lance la montée des objets et détruit ce composant une fois l'animation terminée.
+    /// Le canvas est réactivé après l'animation.
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator HandleRiseAndDestroy()
     {
         yield return StartCoroutine(RiseObjects());
@@ -38,6 +43,11 @@ public class RiseObjectOnStart : MonoBehaviour
         Destroy(gameObject);
     }
     
+    /// <summary>
+    /// Fonction qui fait monter tous les objets de la scène depuis une position décalée en Y
+    /// Elle utilise des délais aléatoires pour chaque objet pour un effet plus dynamique.
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator RiseObjects()
     {
         // Récupération de tous les objets de la scène
@@ -69,6 +79,9 @@ public class RiseObjectOnStart : MonoBehaviour
         yield return new WaitForSeconds(durationPerObject + longestDelay);
     }
     
+    /// <summary>
+    /// Fonction qui active ou désactive tous les Canvas de la scène.
+    /// </summary>
     private void SetCanvasEnabled(bool enabled)
     {
         foreach (Canvas c in _canvas)

@@ -110,75 +110,93 @@ public class GameManager : MonoBehaviour
     {
         gameTime += Time.deltaTime;
     }
-
+    
+    /// <summary>
+    /// Setter pour l'objet de la plantation au sol active.
+    /// </summary>
+    /// <param name="target">La plantation à mettre en active</param>
     public void SetActiveGroundPlantation(GameObject target)
     {
         _activeGroundPlantation = target;
     }
     
+    /// <summary>
+    /// Getter pour l'objet de la plantation au sol active.
+    /// </summary>
+    /// <returns></returns>
     public GameObject GetActiveGroundPlantation()
     {
         return _activeGroundPlantation;
     }
     
-    public void DestroyActiveGroundPlantation()
-    {
-        if (_activeGroundPlantation)
-        {
-            DestroyActiveGroundPlantation();
-        }
-    }
-    
+    /// <summary>
+    /// Fonction qui ajoute un sol planté à la liste des plantations plantées.
+    /// </summary>
+    /// <param name="plantationData">Les informations complètes du sol (graines, types de cultures...)</param>
     public void AddPlantedGroundPlantation(PlantationData plantationData)
     {
         _plantedGroundPlantations.Add(plantationData);
     }
 
+    /// <summary>
+    /// Getter pour la liste des plantations plantées.
+    /// </summary>
+    /// <returns>La liste</returns>
     public List<PlantationData> GetPlantedGroundPlantations()
     {
         return _plantedGroundPlantations;
     }
-
-    public void RemovePlantedGroundPlantation(PlantationData plantationData)
-    {
-        _plantedGroundPlantations.Remove(plantationData); 
-    }
     
+    /// <summary>
+    /// Fonction qui ajoute un sol arrosé à la liste des plantations arrosées.
+    /// </summary>
+    /// <param name="groundPlantation">Le sol a ajouter</param>
     public void AddWateredGroundPlantation(GameObject groundPlantation)
     {
         _wateredGroundPlantations.Add(groundPlantation);
     }
     
-    public List<GameObject> GetWateredGroundPlantations()
-    {
-        return _wateredGroundPlantations;
-    }
-    
+    /// <summary>
+    /// Supprime un sol arrosé de la liste des plantations arrosées.
+    /// </summary>
+    /// <param name="groundPlantation">Le sol a supprimer</param>
     public void RemoveWateredGroundPlantation(GameObject groundPlantation)
     {
         _wateredGroundPlantations.Remove(groundPlantation); 
     }
     
-    public void SetActivePlantation(IPlantation iPlantation)
-    {
-        _activeIPlantation = iPlantation;
-    }
-    
+    /// <summary>
+    /// Fonction qui renvoie la plantation active
+    /// </summary>
+    /// <returns>Les informations de la plantation</returns>
     public IPlantation GetActivePlantation()
     {
         return _activeIPlantation;
     }
     
+    /// <summary>
+    /// Fonction qui indique si un arrosage est en cours
+    /// Cette fonction est appelé pour éviter d'arroser plusieurs plantations en même temps
+    /// Elle est appelé dans le WateringController
+    /// </summary>
+    /// <returns>Le booléan qui indique si un arrosage est en cours</returns>
     public bool IsWateringInProgress()
     {
         return _wateringInProgress;
     }
-    
+
+    /// <summary>
+    /// Fonction qui définit si un arrosage est en cours
+    /// </summary>
+    /// <param name="inProgress">Le booléan qui indique si l'arrosage est en cours</param>
     public void SetWateringInProgress(bool inProgress)
     {
         _wateringInProgress = inProgress;
     }
     
+    /// <summary>
+    /// Met à jour le texte du score affiché à l'écran.
+    /// </summary>
     private void UpdateScoreText()
     {
         // Mise a jour du texte quand on récolte une plantation
@@ -191,9 +209,15 @@ public class GameManager : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// Augmente le score du joueur.
+    /// </summary>
+    /// <param name="amount">Le score a ajouter</param>
     public void IncreaseScore(int amount)
     {
         _score += amount;
+        
+        // Débloque une nouvelle plantation si le score le permet
         if (_score + amount >= scoreStepToDeblockNewPlantation * _numberOfDeblockedPlantations && 
             _numberOfDeblockedPlantations < availablePlantations.Count)
         {
@@ -208,6 +232,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Permet de savoir si le jeu est terminé.
+    /// Utilisé dans le retour au menu principal pour afficher le temps final.
+    /// </summary>
+    /// <returns>Le booléan indiquant si le jeu est fini</returns>
     public bool IsGameOver()
     {
         return _gameIsOver;
@@ -226,16 +255,29 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
     
+    /// <summary>
+    /// Récupère le score actuel.
+    /// </summary>
+    /// <returns>Le score</returns>
     public int GetScore()
     {
         return _score;
     }
     
+    /// <summary>
+    /// Récupère le temps de jeu écoulé.
+    /// </summary>
+    /// <returns>Le temps de jeu</returns>
     public float GetGameTime()
     {
         return gameTime;
     }
 
+    /// <summary>
+    /// Est utilisé pour changer le panneau qui est dans la scène du jeu.
+    /// Ce panneau indique la graine actuellement sélectionnée.
+    /// Pourquoi dans le jeu ? Parce que je trouvais ça plus jolie
+    /// </summary>
     private void InstantiateInventoryItem()
     {
         if (_inventory)

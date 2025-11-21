@@ -107,6 +107,9 @@ public class PauseManager : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// Permet de basculer entre le menu des paramètres et le menu principal du pause menu.
+    /// </summary>
     private void SwitchSettingsState()
     {
         _isSettingsOpen = !_isSettingsOpen;
